@@ -227,6 +227,17 @@ public class QueryBuilder {
             l.add( o );
         return this;
     }
+    
+    public QueryBuilder or( Collection<DBObject> objectCollection ){
+        List l = (List)_query.get( "$or" );
+        if ( l == null ){
+            l = new ArrayList();
+            _query.put( "$or" , l );
+        }
+        for ( DBObject o : objectCollection )
+            l.add( o );
+        return this;
+    }
 
     /**
      * Creates a <code>DBObject</code> query to be used for the driver's find operations
